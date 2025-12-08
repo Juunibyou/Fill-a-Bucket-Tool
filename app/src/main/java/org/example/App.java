@@ -6,7 +6,6 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Checker checker = new Checker(scanner);
 
         System.out.println("|-----Welcome to Console Bucket Fill!-----|");
 
@@ -22,6 +21,8 @@ public class App {
             }
 
             canvas.printCanvas();
+
+            System.out.println();
             System.out.println("[__Tool_Menu__]:");
             System.out.println("1) Pencil-Draw");
             System.out.println("2) Bucket Fill"); 
@@ -57,7 +58,6 @@ public class App {
                         char color = parts[2].charAt(0);
 
                         canvas.setPixel(x, y, color);
-
                         canvas.printCanvas();
                         System.out.println();
                     } 
@@ -70,16 +70,32 @@ public class App {
 
             else if (choice.equals("2")) {
                 System.out.println("|BUCKET FILL MODE|");
-                System.out.println("Enter coordinates and color to fill (x-coordinate y-coordinate character) ");
 
-                int[] input = checker.checkCoordinates("Fill (x y character): ");
-                int x = input[0];
-                int y = input[1];
-                char color = (char) input[2];
+                while (true){
+                    System.out.println("Enter coordinates and color to fill (x-coordinate y-coordinate character)");
+                    String input = scanner.nextLine();
 
-                BucketFill.floodFill(canvas, x, y, color);
-                canvas.printCanvas();
-                System.out.println();
+                    String[] parts = input.split(" ");
+                    if (parts.length != 3) {
+                        System.out.println("Invalid input! Format: x-coordinate y-coordinate character");
+                        continue;
+                    }
+
+                    try {
+                        int x = Integer.parseInt(parts[0]);
+                        int y = Integer.parseInt(parts[1]);
+                        char color = parts[2].charAt(0);
+
+                        BucketFill.floodFill(canvas, x, y, color);
+                        canvas.printCanvas();
+                        System.out.println();
+                        break;
+                    } 
+                    
+                    catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter valid integers for coordinates.");
+                    }
+                }
             }
 
             else if (choice.equals("3")){
