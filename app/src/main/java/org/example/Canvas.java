@@ -13,19 +13,18 @@ public class Canvas {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                grid[i][j] = ' ';
+                grid[i][j] = '.';
             }
         }
     }
 
 // Getters and Setters
     public char getPixel(int x, int y) {
-        if (x >= cols && x < cols && y >= 0 && y < rows) {
+        if (x >= 0 && x < cols && y >= 0 && y < rows) {  // <- correct bounds check
             return grid[y][x];
         }
-
-        return '\0';
-    }
+    return '\0';
+}
 
     public void setPixel(int x, int y, char color) {
         if (x >= 0 && x < cols && y >= 0 && y < rows) {
@@ -43,10 +42,21 @@ public class Canvas {
     }   
 
 //Print Canvas
+//Added changes to show coordinates
     public void printCanvas() {
+        System.out.print("    ");
+
+        for (int j = 0; j < cols; j++) {
+            System.out.printf("%2d ", j);
+        }
+        System.out.println();
+
+
         for (int i = 0; i < rows; i++) {
+            System.out.printf("%2d  ", i);
+
             for (int j = 0; j < cols; j++) {
-                System.out.print(grid[i][j]);
+                System.out.printf(" %c ", grid[i][j]);
             }
             System.out.println();
         }
