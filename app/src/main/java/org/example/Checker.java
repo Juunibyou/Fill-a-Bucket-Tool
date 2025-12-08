@@ -9,24 +9,6 @@ public class Checker {
         this.scanner = scanner;
     }
 
-    public int checkPositive(String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            String input = scanner.nextLine();
-
-            try {
-                int value = Integer.parseInt(input);
-                if (value >= 0) {
-                    return value;
-                } else {
-                    System.out.println("Please enter a positive integer.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid integer.");
-            }
-        }
-    }
-
     public int[] checkCoordinates(String prompt) {
 
         while (true) {

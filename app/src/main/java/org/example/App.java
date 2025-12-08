@@ -33,7 +33,7 @@ public class App {
 
             if (choice.equals("1")){
                 System.out.println("|DRAWING MODE|");
-                System.out.println("Enter coordinates and color (x-coordinate y-coordinate character;) ");
+                System.out.println("Enter coordinates and color (x-coordinate y-coordinate character) ");
                 System.out.println("Type 'back' to return to the main menu.\n\n");
 
                 while (true){
@@ -69,7 +69,31 @@ public class App {
             }
 
             else if (choice.equals("2")) {
+                System.out.println("|BUCKET FILL MODE|");
+                System.out.println("Enter coordinates and color to fill (x-coordinate y-coordinate character) ");
 
+                int[] input = checker.checkCoordinates("Fill (x y character): ");
+                int x = input[0];
+                int y = input[1];
+                char color = (char) input[2];
+
+                BucketFill.floodFill(canvas, x, y, color);
+                canvas.printCanvas();
+                System.out.println();
+            }
+
+            else if (choice.equals("3")){
+                canvas.clear();
+                System.out.println("Canvas cleared");
+            }
+
+            else if (choice.equals("4")){
+                System.out.println("Exiting... Goodbye!");
+                canvasRunning = false;
+            }
+
+            else {
+                System.out.println("Invalid choice. Please select a valid option (1-4).");
             }
         }
 
