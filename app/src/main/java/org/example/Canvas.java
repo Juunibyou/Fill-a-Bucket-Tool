@@ -61,4 +61,12 @@ public class Canvas {
             System.out.println();
         }
     }
+
+    public void clear() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                grid[i][j] = '.';
+            }
+        }
+    }
 }
